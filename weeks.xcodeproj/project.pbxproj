@@ -15,6 +15,8 @@
 		23D2CEC41B9A90FE00869611 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D2CEC21B9A90FE00869611 /* LaunchScreen.xib */; };
 		23D2CEDA1B9A9F0100869611 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CED91B9A9F0100869611 /* Entry.swift */; };
 		23D2CEDC1B9AA2E000869611 /* FacebookHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEDB1B9AA2E000869611 /* FacebookHandler.swift */; };
+		77F87D931B9B2F1900B603E2 /* DailyEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F87D921B9B2F1900B603E2 /* DailyEntriesViewController.swift */; };
+		77F87D951B9B3C3100B603E2 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F87D941B9B3C3100B603E2 /* EntryDetailViewController.swift */; };
 		8B037A8470352322A0CB64DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2FA795190BB2F3C898C844 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		23D2CED91B9A9F0100869611 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		23D2CEDB1B9AA2E000869611 /* FacebookHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookHandler.swift; sourceTree = "<group>"; };
 		23D2CEDE1B9AAA8400869611 /* 4000 Weeks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "4000 Weeks-Bridging-Header.h"; sourceTree = "<group>"; };
+		77F87D921B9B2F1900B603E2 /* DailyEntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyEntriesViewController.swift; path = ../DailyEntriesViewController.swift; sourceTree = "<group>"; };
+		77F87D941B9B3C3100B603E2 /* EntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		7C2FA795190BB2F3C898C844 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E5F22702F77A825821CC2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CC845ED95EEF660E8199994B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,10 +72,12 @@
 		23D2CEB31B9A90FE00869611 /* weeks */ = {
 			isa = PBXGroup;
 			children = (
+				77F87D921B9B2F1900B603E2 /* DailyEntriesViewController.swift */,
 				23D2CEB61B9A90FE00869611 /* AppDelegate.swift */,
 				23D2CEDB1B9AA2E000869611 /* FacebookHandler.swift */,
 				23D2CEBB1B9A90FE00869611 /* ViewController.swift */,
 				23D2CEBD1B9A90FE00869611 /* Main.storyboard */,
+				77F87D941B9B3C3100B603E2 /* EntryDetailViewController.swift */,
 				23D2CEC01B9A90FE00869611 /* Images.xcassets */,
 				23D2CEC21B9A90FE00869611 /* LaunchScreen.xib */,
 				23D2CEB81B9A90FE00869611 /* weeks.xcdatamodeld */,
@@ -214,8 +220,10 @@
 			files = (
 				23D2CEDC1B9AA2E000869611 /* FacebookHandler.swift in Sources */,
 				23D2CEDA1B9A9F0100869611 /* Entry.swift in Sources */,
+				77F87D931B9B2F1900B603E2 /* DailyEntriesViewController.swift in Sources */,
 				23D2CEBC1B9A90FE00869611 /* ViewController.swift in Sources */,
 				23D2CEB71B9A90FE00869611 /* AppDelegate.swift in Sources */,
+				77F87D951B9B3C3100B603E2 /* EntryDetailViewController.swift in Sources */,
 				23D2CEBA1B9A90FE00869611 /* weeks.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = weeks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "weeks/4000 Weeks-Bridging-Header.h";
@@ -344,6 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = weeks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "weeks/4000 Weeks-Bridging-Header.h";
