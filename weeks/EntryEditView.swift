@@ -25,6 +25,8 @@ protocol ImageProvider {
     let titleField = UITextField()
     let summaryTextView = UITextView()
     let saveButton = UIButton()
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+    let pictureView = UIImageView()
     
     var date = NSDate()
     var image: UIImage?
@@ -61,6 +63,18 @@ protocol ImageProvider {
         titleField.setTranslatesAutoresizingMaskIntoConstraints(false)
         summaryTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
         saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pictureView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+        blurView.alpha = 0.75
+        summaryTextView.backgroundColor = UIColor.clearColor()
+        summaryTextView.tintColor = UIColor.whiteColor()
+        summaryTextView.textColor = UIColor.whiteColor()
+        titleField.tintColor = UIColor.whiteColor()
+        titleField.textColor = UIColor.whiteColor()
+        pictureButton.tintColor = UIColor.whiteColor()
+        dateButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        datePicker.backgroundColor = UIColor.whiteColor()
         
         titleField.placeholder = "Title"
         titleField.textAlignment = .Center
@@ -68,6 +82,8 @@ protocol ImageProvider {
         dateButton.setTitleColor(tintColor, forState: .Normal)
         pictureButton.setTitleColor(tintColor, forState: .Normal)
         
+        addSubview(pictureView)
+        addSubview(blurView)
         addSubview(dateButton)
         addSubview(datePicker)
         addSubview(pictureButton)
@@ -201,6 +217,66 @@ protocol ImageProvider {
                 attribute: .Bottom,
                 multiplier: 1,
                 constant: 0),
+
+            // blurView
+            NSLayoutConstraint(item: self,
+                attribute: .Left,
+                relatedBy: .Equal,
+                toItem: blurView,
+                attribute: .Left,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Right,
+                relatedBy: .Equal,
+                toItem: blurView,
+                attribute: .Right,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Bottom,
+                relatedBy: .Equal,
+                toItem: blurView,
+                attribute: .Bottom,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Top,
+                relatedBy: .Equal,
+                toItem: blurView,
+                attribute: .Top,
+                multiplier: 1,
+                constant: 0),
+
+            // pictureView
+            NSLayoutConstraint(item: self,
+                attribute: .Left,
+                relatedBy: .Equal,
+                toItem: pictureView,
+                attribute: .Left,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Right,
+                relatedBy: .Equal,
+                toItem: pictureView,
+                attribute: .Right,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Bottom,
+                relatedBy: .Equal,
+                toItem: pictureView,
+                attribute: .Bottom,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Top,
+                relatedBy: .Equal,
+                toItem: pictureView,
+                attribute: .Top,
+                multiplier: 1,
+                constant: 0),
             ]
         )
         updateDateLabel()
@@ -254,8 +330,7 @@ protocol ImageProvider {
     
     func receiveImage(image: UIImage) {
         self.image = image
-        pictureButton.setImage(image, forState: .Normal)
-        pictureButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFill
+        pictureView.image = image
     }
     
     func pickDate() {
