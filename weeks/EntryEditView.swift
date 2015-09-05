@@ -8,15 +8,27 @@
 
 import Foundation
 
-@IBDesignable class EntryEditView: UIView {
+protocol ImageReceiver {
+    func receiveImage(image: UIImage)
+}
+
+protocol ImageProvider {
+    // this method should eventuall call toReceiver.receiveImages()
+    func provideImage(toReceiver: ImageReceiver)
+}
+
+@IBDesignable class EntryEditView: UIView, ImageReceiver {
     let dateButton = UIButton()
     let datePicker = UIDatePicker()
     var datePickerConstraint: NSLayoutConstraint!
     let pictureButton = UIButton()
     let titleField = UITextField()
     let summaryTextView = UITextView()
+    let saveButton = UIButton()
     
     var date = NSDate()
+    var image: UIImage?
+    var imageDelegate: ImageProvider?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,24 +36,31 @@ import Foundation
     }
     
     func setupConstraints() {
+        clipsToBounds = true
         datePickerConstraint = NSLayoutConstraint(item: datePicker,
             attribute: .Top,
             relatedBy: .Equal,
-            toItem: self,
+            toItem: saveButton,
             attribute: .Bottom,
             multiplier: 1,
             constant: 0)
         dateButton.setTitle("Set Date", forState: .Normal)
         dateButton.addTarget(self, action: "pickDate", forControlEvents: .TouchUpInside)
-//        pictureButton.setTitle("Add Picture", forState: .Normal)
+
         pictureButton.setImage(UIImage(named: "Camera"), forState: .Normal)
         pictureButton.addTarget(self, action: "pickPicture", forControlEvents: .TouchUpInside)
+        
+        saveButton.setTitle("Save", forState: .Normal)
+        saveButton.addTarget(self, action: "insertEntry", forControlEvents: .TouchUpInside)
+        saveButton.backgroundColor = tintColor
+        saveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
         dateButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         datePicker.setTranslatesAutoresizingMaskIntoConstraints(false)
         pictureButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         titleField.setTranslatesAutoresizingMaskIntoConstraints(false)
         summaryTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         titleField.placeholder = "Title"
         titleField.textAlignment = .Center
@@ -54,6 +73,7 @@ import Foundation
         addSubview(pictureButton)
         addSubview(titleField)
         addSubview(summaryTextView)
+        addSubview(saveButton)
         addConstraints([
             // titleField
             NSLayoutConstraint(item: self,
@@ -109,7 +129,8 @@ import Foundation
                 attribute: .Right,
                 multiplier: 1,
                 constant: 8),
-            
+            NSLayoutConstraint(item: pictureButton, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
+            NSLayoutConstraint(item: pictureButton, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
             
             //datePicker
             NSLayoutConstraint(item: self,
@@ -127,6 +148,29 @@ import Foundation
                 multiplier: 1,
                 constant: 0),
             datePickerConstraint,
+            
+            // saveButton
+            NSLayoutConstraint(item: self,
+                attribute: .Left,
+                relatedBy: .Equal,
+                toItem: saveButton,
+                attribute: .Left,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Right,
+                relatedBy: .Equal,
+                toItem: saveButton,
+                attribute: .Right,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Bottom,
+                relatedBy: .Equal,
+                toItem: saveButton,
+                attribute: .Bottom,
+                multiplier: 1,
+                constant: 0),
             
             // summaryTextView
             NSLayoutConstraint(item: self,
@@ -172,14 +216,46 @@ import Foundation
     }
     
     required init(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
         super.init(coder: aDecoder)
         setupConstraints()
     }
     
+    func insertEntry() {
+        let e = Entry.insertNew()
+        e.date = date.timeIntervalSince1970
+        e.summary = summaryTextView.text
+        e.title = titleField.text
+        e.picture = UIImagePNGRepresentation(image)
+        Entry.saveContext()
+    
+
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allZeros,
+            animations: {
+                self.transform = CGAffineTransformMakeScale(0.3, 0.3)
+                self.alpha = 0.5
+            }, completion: {
+                complete in
+                UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: .allZeros, animations: {
+                    self.date = NSDate()
+                    self.summaryTextView.text = ""
+                    self.titleField.text = ""
+                    self.updateDateLabel()
+                    self.image = nil
+                    self.pictureButton.setImage(UIImage(named: "Camera"), forState: .Normal)
+                    self.transform = CGAffineTransformIdentity
+                    self.alpha = 1
+                    }, completion: nil)
+        })
+    }
     
     func pickPicture() {
-        
+        imageDelegate?.provideImage(self)
+    }
+    
+    func receiveImage(image: UIImage) {
+        self.image = image
+        pictureButton.setImage(image, forState: .Normal)
+        pictureButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFill
     }
     
     func pickDate() {
@@ -196,5 +272,26 @@ import Foundation
                 self.layoutIfNeeded()
         }, completion: nil)
         updateDateLabel()
+    }
+}
+
+class EntryTestVC: UIViewController, ImageProvider, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet var eview: EntryEditView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        eview.imageDelegate = self
+        println(Entry.fetch())
+    }
+    
+    func provideImage(toReceiver: ImageReceiver) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        eview.receiveImage(image)
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
 }

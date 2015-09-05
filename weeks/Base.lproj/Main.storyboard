@@ -22,10 +22,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Entry TestVC-->
         <scene sceneID="aYe-TB-vU9">
             <objects>
-                <viewController id="sgc-T9-hMD" sceneMemberID="viewController">
+                <viewController id="sgc-T9-hMD" customClass="EntryTestVC" customModule="_000_Weeks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xia-L0-HUE"/>
                         <viewControllerLayoutGuide type="bottom" id="fEl-jT-tYd"/>
@@ -46,6 +46,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="it1-fg-y2c" secondAttribute="trailing" constant="-16" id="yCg-7V-OGC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="eview" destination="it1-fg-y2c" id="X0F-ga-frr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNb-uh-haS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

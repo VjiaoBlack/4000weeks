@@ -42,5 +42,7 @@ extension Entry {
         mobc().save(&err)
     }
     
-    
+    override var description: String {
+       return "\(date): \(title)\n\t\(summary)"
+    }
 }
