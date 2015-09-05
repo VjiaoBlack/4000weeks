@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		23D2CEB01B9A90FE00869611 /* weeks */ = {
+		23D2CEB01B9A90FE00869611 /* 4000 Weeks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23D2CED31B9A90FE00869611 /* Build configuration list for PBXNativeTarget "weeks" */;
+			buildConfigurationList = 23D2CED31B9A90FE00869611 /* Build configuration list for PBXNativeTarget "4000 Weeks" */;
 			buildPhases = (
 				23D2CEAD1B9A90FE00869611 /* Sources */,
 				23D2CEAE1B9A90FE00869611 /* Frameworks */,
@@ -130,7 +130,7 @@
 			);
 			dependencies = (
 			);
-			name = weeks;
+			name = "4000 Weeks";
 			productName = weeks;
 			productReference = 23D2CEB11B9A90FE00869611 /* weeks.app */;
 			productType = "com.apple.product-type.application";
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23D2CEB01B9A90FE00869611 /* weeks */,
+				23D2CEB01B9A90FE00869611 /* 4000 Weeks */,
 				23D2CEC81B9A90FE00869611 /* weeksTests */,
 			);
 		};
@@ -234,7 +234,7 @@
 /* Begin PBXTargetDependency section */
 		23D2CECB1B9A90FE00869611 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 23D2CEB01B9A90FE00869611 /* weeks */;
+			target = 23D2CEB01B9A90FE00869611 /* 4000 Weeks */;
 			targetProxy = 23D2CECA1B9A90FE00869611 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -406,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23D2CED31B9A90FE00869611 /* Build configuration list for PBXNativeTarget "weeks" */ = {
+		23D2CED31B9A90FE00869611 /* Build configuration list for PBXNativeTarget "4000 Weeks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23D2CED41B9A90FE00869611 /* Debug */,
