@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23CD44AB1B9B83EC00670248 /* EntryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD44AA1B9B83EC00670248 /* EntryCollectionView.swift */; };
+		23CD44AD1B9B8BED00670248 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD44AC1B9B8BED00670248 /* DateExtensions.swift */; };
 		23D2CEB71B9A90FE00869611 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEB61B9A90FE00869611 /* AppDelegate.swift */; };
 		23D2CEBA1B9A90FE00869611 /* weeks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEB81B9A90FE00869611 /* weeks.xcdatamodeld */; };
 		23D2CEBC1B9A90FE00869611 /* ServiceLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEBB1B9A90FE00869611 /* ServiceLoginViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23CD44AA1B9B83EC00670248 /* EntryCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCollectionView.swift; sourceTree = "<group>"; };
+		23CD44AC1B9B8BED00670248 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		23D2CEB11B9A90FE00869611 /* 4000 Weeks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4000 Weeks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D2CEB51B9A90FE00869611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23D2CEB61B9A90FE00869611 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 		23D2CEB31B9A90FE00869611 /* weeks */ = {
 			isa = PBXGroup;
 			children = (
+				23CD44AA1B9B83EC00670248 /* EntryCollectionView.swift */,
+				23CD44AC1B9B8BED00670248 /* DateExtensions.swift */,
 				23D2CEB61B9A90FE00869611 /* AppDelegate.swift */,
 				23D2CEBB1B9A90FE00869611 /* ServiceLoginViewController.swift */,
 				23D2CEEA1B9B1A6600869611 /* EntryEditView.swift */,
@@ -217,8 +223,10 @@
 			files = (
 				23D2CEE91B9AEEFC00869611 /* Entry.swift in Sources */,
 				23D2CEBC1B9A90FE00869611 /* ServiceLoginViewController.swift in Sources */,
+				23CD44AB1B9B83EC00670248 /* EntryCollectionView.swift in Sources */,
 				23D2CEE31B9AEA7300869611 /* EntryLog.swift in Sources */,
 				23D2CEB71B9A90FE00869611 /* AppDelegate.swift in Sources */,
+				23CD44AD1B9B8BED00670248 /* DateExtensions.swift in Sources */,
 				23D2CEBA1B9A90FE00869611 /* weeks.xcdatamodeld in Sources */,
 				23D2CEEB1B9B1A6600869611 /* EntryEditView.swift in Sources */,
 			);

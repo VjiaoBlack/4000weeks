@@ -20,8 +20,15 @@ extension Entry {
         let fetchRequest = NSFetchRequest(entityName: "Entry")
         fetchRequest.fetchLimit = limit
         var e: NSError?
-        let entities = mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
-        return entities
+        return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
+
+    }
+    
+    class func fetch(aroundDate: NSDate) -> [Entry] {
+        let fetchRequest = NSFetchRequest(entityName: "Entry")
+        fetchRequest.predicate = NSPredicate(format: "date BETWEEN %@", [aroundDate.zeroSecond(), aroundDate.lastSecond()])
+        var e: NSError?
+        return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
     }
     
     

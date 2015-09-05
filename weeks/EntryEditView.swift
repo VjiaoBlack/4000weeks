@@ -85,12 +85,10 @@ protocol ImageProvider {
         titleField.placeholder = "Title"
         titleField.textAlignment = .Center
         
-        
-        let font = UIFont(name: "Palatino", size: 20)
         titleField.font = UIFont(name: "Palatino", size: 24)
         summaryTextView.font = UIFont(name: "Palatino", size: 18)
         dateButton.titleLabel?.font = UIFont(name: "Palatino-Italic", size: 22)
-        saveButton.titleLabel?.font = font
+        saveButton.titleLabel?.font = UIFont(name: "Palatino", size: 20)
         pictureButton.titleLabel?.font = UIFont(name: "Palatino-Italic", size: 22)
 
         summaryTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
