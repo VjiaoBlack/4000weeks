@@ -49,7 +49,7 @@ protocol ImageProvider {
         dateButton.setTitle("Set Date", forState: .Normal)
         dateButton.addTarget(self, action: "pickDate", forControlEvents: .TouchUpInside)
 
-        pictureButton.setImage(UIImage(named: "Camera"), forState: .Normal)
+        pictureButton.setTitle("Pick Photo", forState: .Normal)
         pictureButton.addTarget(self, action: "pickPicture", forControlEvents: .TouchUpInside)
         
         saveButton.setTitle("Save", forState: .Normal)
@@ -66,7 +66,7 @@ protocol ImageProvider {
         pictureView.setTranslatesAutoresizingMaskIntoConstraints(false)
         blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
 
-        blurView.alpha = 0.75
+        blurView.alpha = 1
         summaryTextView.backgroundColor = UIColor.clearColor()
         summaryTextView.tintColor = UIColor.whiteColor()
         summaryTextView.textColor = UIColor.whiteColor()
@@ -79,8 +79,15 @@ protocol ImageProvider {
         titleField.placeholder = "Title"
         titleField.textAlignment = .Center
         
-        dateButton.setTitleColor(tintColor, forState: .Normal)
-        pictureButton.setTitleColor(tintColor, forState: .Normal)
+        
+        let font = UIFont(name: "Cochin", size: 20)
+        titleField.font = font
+        summaryTextView.font = font
+        dateButton.titleLabel?.font = UIFont(name: "Cochin-Italic", size: 20)
+        saveButton.titleLabel?.font = font
+        pictureButton.titleLabel?.font = UIFont(name: "Cochin-Italic", size: 20)
+
+        summaryTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
         addSubview(pictureView)
         addSubview(blurView)
@@ -145,8 +152,8 @@ protocol ImageProvider {
                 attribute: .Right,
                 multiplier: 1,
                 constant: 8),
-            NSLayoutConstraint(item: pictureButton, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
-            NSLayoutConstraint(item: pictureButton, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
+//            NSLayoutConstraint(item: pictureButton, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
+//            NSLayoutConstraint(item: pictureButton, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: 50),
             
             //datePicker
             NSLayoutConstraint(item: self,
@@ -288,7 +295,6 @@ protocol ImageProvider {
         fmt.dateStyle = NSDateFormatterStyle.ShortStyle
         let str = fmt.stringFromDate(date)
         dateButton.setTitle(str, forState: .Normal)
-        dateButton.titleLabel?.font = UIFont.italicSystemFontOfSize(16)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -317,7 +323,6 @@ protocol ImageProvider {
                     self.titleField.text = ""
                     self.updateDateLabel()
                     self.image = nil
-                    self.pictureButton.setImage(UIImage(named: "Camera"), forState: .Normal)
                     self.transform = CGAffineTransformIdentity
                     self.alpha = 1
                     }, completion: nil)
@@ -331,6 +336,7 @@ protocol ImageProvider {
     func receiveImage(image: UIImage) {
         self.image = image
         pictureView.image = image
+        blurView.alpha = 0.75
     }
     
     func pickDate() {
