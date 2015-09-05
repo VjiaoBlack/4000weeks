@@ -37,6 +37,19 @@ protocol ImageProvider {
         setupConstraints()
     }
     
+    func setMainColor(color: UIColor) {
+        
+        summaryTextView.backgroundColor = UIColor.clearColor()
+        summaryTextView.tintColor = color
+        summaryTextView.textColor = color
+        titleField.tintColor = color
+        titleField.textColor = color
+        pictureButton.tintColor = color
+        pictureButton.setTitleColor(color, forState: .Normal)
+        dateButton.setTitleColor(color, forState: .Normal)
+        datePicker.backgroundColor = color
+    }
+    
     func setupConstraints() {
         clipsToBounds = true
         datePickerConstraint = NSLayoutConstraint(item: datePicker,
@@ -49,7 +62,7 @@ protocol ImageProvider {
         dateButton.setTitle("Set Date", forState: .Normal)
         dateButton.addTarget(self, action: "pickDate", forControlEvents: .TouchUpInside)
 
-        pictureButton.setTitle("Pick Photo", forState: .Normal)
+        pictureButton.setTitle("Photo", forState: .Normal)
         pictureButton.addTarget(self, action: "pickPicture", forControlEvents: .TouchUpInside)
         
         saveButton.setTitle("Save", forState: .Normal)
@@ -66,28 +79,23 @@ protocol ImageProvider {
         pictureView.setTranslatesAutoresizingMaskIntoConstraints(false)
         blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
 
-        blurView.alpha = 1
-        summaryTextView.backgroundColor = UIColor.clearColor()
-        summaryTextView.tintColor = UIColor.whiteColor()
-        summaryTextView.textColor = UIColor.whiteColor()
-        titleField.tintColor = UIColor.whiteColor()
-        titleField.textColor = UIColor.whiteColor()
-        pictureButton.tintColor = UIColor.whiteColor()
-        dateButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        datePicker.backgroundColor = UIColor.whiteColor()
+        blurView.alpha = 0
+        
         
         titleField.placeholder = "Title"
         titleField.textAlignment = .Center
         
         
-        let font = UIFont(name: "Cochin", size: 20)
-        titleField.font = font
-        summaryTextView.font = font
-        dateButton.titleLabel?.font = UIFont(name: "Cochin-Italic", size: 20)
+        let font = UIFont(name: "Palatino", size: 20)
+        titleField.font = UIFont(name: "Palatino", size: 24)
+        summaryTextView.font = UIFont(name: "Palatino", size: 18)
+        dateButton.titleLabel?.font = UIFont(name: "Palatino-Italic", size: 22)
         saveButton.titleLabel?.font = font
-        pictureButton.titleLabel?.font = UIFont(name: "Cochin-Italic", size: 20)
+        pictureButton.titleLabel?.font = UIFont(name: "Palatino-Italic", size: 22)
 
         summaryTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+        setMainColor(UIColor.blackColor())
         
         addSubview(pictureView)
         addSubview(blurView)
@@ -337,6 +345,7 @@ protocol ImageProvider {
         self.image = image
         pictureView.image = image
         blurView.alpha = 0.75
+        setMainColor(UIColor.whiteColor())
     }
     
     func pickDate() {
