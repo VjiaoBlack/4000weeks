@@ -38,12 +38,10 @@ let kEntryCellIdentifier = "kEntryCellIdentifier"
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
     }
 }
 
@@ -56,7 +54,7 @@ class EntryCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    var entries: [Entry] = Entry.fetch()//(NSDate())
+    var entries: [Entry] = Entry.fetch(limit: 1)//(NSDate())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +76,7 @@ class EntryCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kEntryCellIdentifier, forIndexPath: indexPath) as! EntryCollectionViewCell
         cell.entry = entries[indexPath.row]
+        cell.subviews.first?.setTranslatesAutoresizingMaskIntoConstraints(false)
         var f = cell.frame
         f.size.width = view.frame.width
         f.size.height = EntryCollectionViewCell.desiredHeight(forEntry: entries[indexPath.row], width: f.width)
