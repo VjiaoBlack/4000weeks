@@ -15,6 +15,7 @@
 		23D2CEC41B9A90FE00869611 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D2CEC21B9A90FE00869611 /* LaunchScreen.xib */; };
 		23D2CEE31B9AEA7300869611 /* EntryLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEE21B9AEA7300869611 /* EntryLog.swift */; };
 		23D2CEE91B9AEEFC00869611 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEE81B9AEEFC00869611 /* Entry.swift */; };
+		23D2CEEB1B9B1A6600869611 /* EntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2CEEA1B9B1A6600869611 /* EntryEditView.swift */; };
 		8B037A8470352322A0CB64DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2FA795190BB2F3C898C844 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		23D2CEDE1B9AAA8400869611 /* 4000 Weeks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "4000 Weeks-Bridging-Header.h"; sourceTree = "<group>"; };
 		23D2CEE21B9AEA7300869611 /* EntryLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryLog.swift; sourceTree = "<group>"; };
 		23D2CEE81B9AEEFC00869611 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		23D2CEEA1B9B1A6600869611 /* EntryEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryEditView.swift; sourceTree = "<group>"; };
 		7C2FA795190BB2F3C898C844 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E5F22702F77A825821CC2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CC845ED95EEF660E8199994B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				23D2CEB61B9A90FE00869611 /* AppDelegate.swift */,
 				23D2CEBB1B9A90FE00869611 /* ServiceLoginViewController.swift */,
+				23D2CEEA1B9B1A6600869611 /* EntryEditView.swift */,
 				23D2CEBD1B9A90FE00869611 /* Main.storyboard */,
 				23D2CEC01B9A90FE00869611 /* Images.xcassets */,
 				23D2CEC21B9A90FE00869611 /* LaunchScreen.xib */,
@@ -217,6 +220,7 @@
 				23D2CEE31B9AEA7300869611 /* EntryLog.swift in Sources */,
 				23D2CEB71B9A90FE00869611 /* AppDelegate.swift in Sources */,
 				23D2CEBA1B9A90FE00869611 /* weeks.xcdatamodeld in Sources */,
+				23D2CEEB1B9B1A6600869611 /* EntryEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

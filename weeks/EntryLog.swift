@@ -26,10 +26,15 @@ extension Entry {
     
     
     // Always save context after modifying
-    class func insert() -> Entry {
+    class func insertNew() -> Entry {
         let entry = NSEntityDescription.insertNewObjectForEntityForName("Entry",
             inManagedObjectContext: mobc()) as! Entry
         return entry
+    }
+    
+    func deleteAndSave() {
+        Entry.mobc().deleteObject(self)
+        Entry.saveContext()
     }
     
     class func saveContext() {
