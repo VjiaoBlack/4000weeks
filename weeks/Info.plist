@@ -2,6 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb115822082105383</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>io.willft.weeksig</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>igcb84a4bdbb3146df8eb0c897584e0284</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>115822082105383</string>
+	<key>FacebookDisplayName</key>
+	<string>4000Weeks</string>
+	<key>InstagramAppClientId</key>
+	<string>cb84a4bdbb3146df8eb0c897584e0284</string>
+	<key>InstagramAppRedirectURL</key>
+	<string>igcb84a4bdbb3146df8eb0c897584e0284://authorize</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
