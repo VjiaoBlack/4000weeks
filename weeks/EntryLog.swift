@@ -30,8 +30,8 @@ extension Entry {
     
     class func fetch(between a: NSDate, and b: NSDate) -> [Entry] {
         let fetchRequest = NSFetchRequest(entityName: "Entry")
-        println(b)
-        fetchRequest.predicate = NSPredicate(format: "date <= %@", b)
+        fetchRequest.predicate = NSPredicate(format: "(date >= %@)", a)
+        println(fetchRequest.predicate)
         var e: NSError?
         return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
     }

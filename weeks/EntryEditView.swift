@@ -48,7 +48,7 @@ protocol ImageProvider {
         pictureButton.tintColor = color
         pictureButton.setTitleColor(color, forState: .Normal)
         dateButton.setTitleColor(color, forState: .Normal)
-        datePicker.backgroundColor = color
+        datePicker.backgroundColor = UIColor.whiteColor()
     }
     
     func setupConstraints() {

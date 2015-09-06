@@ -70,7 +70,7 @@ class EntryTableViewCell: UITableViewCell {
             // dateLabel
             NSLayoutConstraint(item: contentView, attribute: .Left, relatedBy: .Equal, toItem: dateLabel, attribute: .Left, multiplier: 1, constant: 32),
             NSLayoutConstraint(item: titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: dateLabel, attribute: .Top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: dateLabel, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 0, constant: 33),
+            NSLayoutConstraint(item: dateLabel, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 0, constant: 32),
             
             // summaryLabel
             NSLayoutConstraint(item: contentView, attribute: .Bottom, relatedBy: .Equal, toItem: summaryLabel, attribute: .Bottom, multiplier: 1, constant: 8),
@@ -95,7 +95,7 @@ class EntryTableViewController: UITableViewController {
         }
     }
     
-    var entries: [Entry] = Entry.fetch(between: NSDate(timeIntervalSince1970: 0),and:NSDate())
+    var entries: [Entry] = Entry.fetch(NSDate())
     
     override func viewDidLoad() {
         super.viewDidLoad()
