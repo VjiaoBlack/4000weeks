@@ -13,16 +13,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="g9c-r9-70E">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Left" id="8KX-Ce-nUt"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="c29-1g-viV"/>
+                                <barButtonItem title="Today" id="HfQ-Sb-rjd"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="53i-Gb-KOG"/>
+                                <barButtonItem title="Right" id="FEc-BC-HdP"/>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="kEntryCellIdentifier" rowHeight="173" id="DtM-1F-d4e" customClass="EntryTableViewCell" customModule="_000_Weeks" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtM-1F-d4e" id="RPn-kT-xRF">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFB-fB-7FO">
-                                            <rect key="frame" x="-8" y="0.0" width="616" height="172"/>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFB-fB-7FO">
+                                            <rect key="frame" x="-8" y="0.0" width="616" height="173"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aRq-5h-EVN">
-                                                <rect key="frame" x="0.0" y="0.0" width="616" height="172"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="616" height="173"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <blurEffect style="dark"/>

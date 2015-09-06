@@ -87,13 +87,25 @@ class EntryTableViewCell: UITableViewCell {
 }
 
 class EntryTableViewController: UITableViewController {
+    @IBOutlet weak var leftButton: UIBarButtonItem!
+    @IBOutlet weak var rightButton: UIBarButtonItem!
+    @IBOutlet weak var centerButton: UIBarButtonItem!
 
     var date: NSDate = NSDate() {
         didSet {
-            let f: Entry -> Bool = {
-                return  $0.date <= self.date.lastSecond()
+            let firstSeconds = date.zeroSecond().timeIntervalSince1970
+            let lastSeconds = date.lastSecond().timeIntervalSince1970
+            let f: Entry -> Bool = { e in
+                
+                return  (e.date <= lastSeconds) && (e.date >= firstSeconds)
             }
-            entries = Entry.fetch(date).filter(f)
+            entries = Entry.fetch().filter(f)
+            let fmt = NSDateFormatter()
+            fmt.locale = NSLocale.currentLocale()
+            fmt.dateStyle = NSDateFormatterStyle.ShortStyle
+            leftButton.title = fmt.stringFromDate(NSDate(timeIntervalSince1970: firstSeconds - 5000))
+            rightButton.title = fmt.stringFromDate(NSDate(timeIntervalSince1970: lastSeconds + 5000))
+            centerButton.title = fmt.stringFromDate(date)
             tableView.reloadData()
         }
     }
@@ -103,7 +115,36 @@ class EntryTableViewController: UITableViewController {
         super.viewDidLoad()
         date = NSDate()
         tableView.reloadData()
-        tableView.contentOffset = CGPointZero
+ç
+        centerButton.tintColor = UIColor.blackColor()
+        centerButton.enabled = false
+    }
+    
+    @IBAction func tomorrow() {
+        UIView.animateWithDuration(0.5,
+            animations: {
+                self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width, 0)
+            }, completion: {
+                date = NSDate(timeIntervalSince1970: lastSeconds + 5000)
+                self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
+                UIView.animateWithDuration(0.5, animations: {
+                    self.view.transform = CGAffineTransformIdentity
+                })
+        })
+
+    }
+    
+    @IBAction func yesterday() {
+        UIView.animateWithDuration(0.5,
+            animations: {
+                self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
+            }, completion: {
+                date = NSDate(timeIntervalSince1970: lastSeconds - 5000)
+                self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width, 0)
+                UIView.animateWithDuration(0.5, animations: {
+                    self.view.transform = CGAffineTransformIdentity
+                })
+        })
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
