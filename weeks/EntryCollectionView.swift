@@ -18,12 +18,12 @@ class EntryTableViewCell: UITableViewCell {
     
     var entry: Entry? {
         didSet {
-            titleLabel.text = entry?.title
+            titleLabel.text = "   "+entry!.title
             //photoView.image = UIImage(data: entry!.picture)
             let fmt = NSDateFormatter()
             fmt.locale = NSLocale.currentLocale()
             fmt.dateStyle = NSDateFormatterStyle.ShortStyle
-            dateLabel.text = fmt.stringFromDate(NSDate(timeIntervalSince1970: entry!.date))
+            dateLabel.text = "   "+fmt.stringFromDate(NSDate(timeIntervalSince1970: entry!.date))
             
             summaryLabel.text = entry?.summary
             backgroundView = UIImageView(image: UIImage(data: entry!.picture))
@@ -90,15 +90,18 @@ class EntryTableViewController: UITableViewController {
 
     var date: NSDate = NSDate() {
         didSet {
-            entries = Entry.fetch(date)
+            let f: Entry -> Bool = {
+                return  $0.date <= self.date.lastSecond()
+            }
+            entries = Entry.fetch(date).filter(f)
             tableView.reloadData()
         }
     }
     
-    var entries: [Entry] = Entry.fetch(NSDate())
-    
+    var entries: [Entry] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        date = NSDate()
         tableView.reloadData()
         tableView.contentOffset = CGPointZero
     }
