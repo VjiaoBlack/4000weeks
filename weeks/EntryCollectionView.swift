@@ -33,7 +33,7 @@ let kEntryCellIdentifier = "kEntryCellIdentifier"
         let size = text.boundingRectWithSize(CGSize(width: width - 16, height: CGFloat.max),
             options: NSStringDrawingOptions.allZeros,
             attributes: attrs, context: nil)
-        return size.height + 96
+        return min(size.height + 96, 200)
     }
     
     required init(coder aDecoder: NSCoder) {
