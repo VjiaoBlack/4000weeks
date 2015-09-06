@@ -380,7 +380,7 @@ class EntryEditView: UIView, ImageReceiver {
     func receiveImage(image: UIImage) {
         self.image = image
         pictureView.image = image
-        blurView.alpha = 0.75
+        blurView.alpha = 1
         setMainColor(UIColor.whiteColor())
         saveButton.enabled = true
     }
@@ -408,7 +408,6 @@ class EntryTestVC: UIViewController, ImageProvider, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         eview.imageDelegate = self
-        println(Entry.fetch())
     }
     
     func saved() {

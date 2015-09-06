@@ -18,12 +18,12 @@ class EntryTableViewCell: UITableViewCell {
     
     var entry: Entry? {
         didSet {
-            titleLabel.text = "   "+entry!.title
+            titleLabel.text = " "+entry!.title
             //photoView.image = UIImage(data: entry!.picture)
             let fmt = NSDateFormatter()
             fmt.locale = NSLocale.currentLocale()
             fmt.dateStyle = NSDateFormatterStyle.ShortStyle
-            dateLabel.text = "   "+fmt.stringFromDate(NSDate(timeIntervalSince1970: entry!.date))
+            dateLabel.text = " "+fmt.stringFromDate(NSDate(timeIntervalSince1970: entry!.date))
             
             summaryLabel.text = entry?.summary
             backgroundView = UIImageView(image: UIImage(data: entry!.picture))
