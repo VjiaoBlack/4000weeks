@@ -13,15 +13,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="g9c-r9-70E">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
-                                <barButtonItem title="Left" id="8KX-Ce-nUt"/>
+                                <barButtonItem title="Left" id="8KX-Ce-nUt">
+                                    <connections>
+                                        <action selector="yesterday" destination="EsP-PA-lMT" id="DAU-qK-uyy"/>
+                                    </connections>
+                                </barButtonItem>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="c29-1g-viV"/>
                                 <barButtonItem title="Today" id="HfQ-Sb-rjd"/>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="53i-Gb-KOG"/>
-                                <barButtonItem title="Right" id="FEc-BC-HdP"/>
+                                <barButtonItem title="Right" id="FEc-BC-HdP">
+                                    <connections>
+                                        <action selector="tomorrow" destination="EsP-PA-lMT" id="9rg-Aa-Ac3"/>
+                                    </connections>
+                                </barButtonItem>
                             </items>
                         </toolbar>
                         <prototypes>
@@ -60,6 +70,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="centerButton" destination="HfQ-Sb-rjd" id="azS-Kd-oBv"/>
+                        <outlet property="leftButton" destination="8KX-Ce-nUt" id="zQ4-lj-Zmh"/>
+                        <outlet property="rightButton" destination="FEc-BC-HdP" id="Kdx-Gu-R7i"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KF-Rc-vWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

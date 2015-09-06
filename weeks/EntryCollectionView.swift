@@ -115,36 +115,52 @@ class EntryTableViewController: UITableViewController {
         super.viewDidLoad()
         date = NSDate()
         tableView.reloadData()
-ç
+
         centerButton.tintColor = UIColor.blackColor()
         centerButton.enabled = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     @IBAction func tomorrow() {
-        UIView.animateWithDuration(0.5,
+        let lastSeconds: NSTimeInterval = date.lastSecond().timeIntervalSince1970
+        let c: Bool -> () = { _ in
+//            self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width/2, 0)
+            UIView.animateWithDuration(0.1, animations: {
+                self.tableView.layer.transform = CATransform3DIdentity
+                self.date = NSDate(timeIntervalSince1970: lastSeconds + 5000)
+                self.view.alpha = 1
+            })
+        }
+        UIView.animateWithDuration(0.1,
             animations: {
-                self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width, 0)
-            }, completion: {
-                date = NSDate(timeIntervalSince1970: lastSeconds + 5000)
-                self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
-                UIView.animateWithDuration(0.5, animations: {
-                    self.view.transform = CGAffineTransformIdentity
-                })
-        })
+//                self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width/2, 0)
+                self.tableView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI_4), 0, 1, 0)
+             self.view.alpha = 0.75
+            }, completion: c)
 
     }
     
     @IBAction func yesterday() {
-        UIView.animateWithDuration(0.5,
+        let zeroSeconds: NSTimeInterval = date.zeroSecond().timeIntervalSince1970
+        let c: Bool -> () = { _ in
+//            self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width/2, 0)
+            UIView.animateWithDuration(0.1, animations: {
+                //self.view.transform = CGAffineTransformIdentity
+                self.tableView.layer.transform = CATransform3DIdentity
+                self.date = NSDate(timeIntervalSince1970: zeroSeconds - 5000)
+                self.view.alpha = 1
+            })
+        }
+        UIView.animateWithDuration(0.1,
             animations: {
-                self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
-            }, completion: {
-                date = NSDate(timeIntervalSince1970: lastSeconds - 5000)
-                self.view.transform = CGAffineTransformMakeTranslation(-self.view.frame.width, 0)
-                UIView.animateWithDuration(0.5, animations: {
-                    self.view.transform = CGAffineTransformIdentity
-                })
-        })
+                //self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.width/2, 0)
+                self.tableView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_4), 0, 1, 0)
+                self.view.alpha = 0.75
+            }, completion: c)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

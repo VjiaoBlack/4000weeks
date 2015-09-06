@@ -18,7 +18,7 @@ protocol ImageProvider {
     func saved()
 }
 
-@IBDesignable class EntryEditView: UIView, ImageReceiver {
+class EntryEditView: UIView, ImageReceiver {
     let dateButton = UIButton()
     let datePicker = UIDatePicker()
     var datePickerConstraint: NSLayoutConstraint!
@@ -26,6 +26,7 @@ protocol ImageProvider {
     let titleField = UITextField()
     let summaryTextView = UITextView()
     let saveButton = UIButton()
+    let cancelButton = UIButton()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
     let pictureView = UIImageView()
     
@@ -40,6 +41,8 @@ protocol ImageProvider {
     
     func setMainColor(color: UIColor) {
         
+        cancelButton.backgroundColor = UIColor.redColor()
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         summaryTextView.backgroundColor = UIColor.clearColor()
         summaryTextView.tintColor = color
         summaryTextView.textColor = color
@@ -71,6 +74,9 @@ protocol ImageProvider {
         saveButton.backgroundColor = tintColor
         saveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
+        
         dateButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         datePicker.setTranslatesAutoresizingMaskIntoConstraints(false)
         pictureButton.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -79,6 +85,7 @@ protocol ImageProvider {
         saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         pictureView.setTranslatesAutoresizingMaskIntoConstraints(false)
         blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cancelButton.setTranslatesAutoresizingMaskIntoConstraints(false)
 
         blurView.alpha = 0
         
@@ -96,6 +103,8 @@ protocol ImageProvider {
         
         setMainColor(UIColor.blackColor())
         
+        saveButton.enabled = false
+        
         addSubview(pictureView)
         addSubview(blurView)
         addSubview(dateButton)
@@ -104,6 +113,7 @@ protocol ImageProvider {
         addSubview(titleField)
         addSubview(summaryTextView)
         addSubview(saveButton)
+        addSubview(cancelButton)
         addConstraints([
             // titleField
             NSLayoutConstraint(item: self,
@@ -181,7 +191,7 @@ protocol ImageProvider {
             
             // saveButton
             NSLayoutConstraint(item: self,
-                attribute: .Left,
+                attribute: .CenterX,
                 relatedBy: .Equal,
                 toItem: saveButton,
                 attribute: .Left,
@@ -198,6 +208,29 @@ protocol ImageProvider {
                 attribute: .Bottom,
                 relatedBy: .Equal,
                 toItem: saveButton,
+                attribute: .Bottom,
+                multiplier: 1,
+                constant: 0),
+            
+            // cancelButton
+            NSLayoutConstraint(item: self,
+                attribute: .Left,
+                relatedBy: .Equal,
+                toItem: cancelButton,
+                attribute: .Left,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .CenterX,
+                relatedBy: .Equal,
+                toItem: cancelButton,
+                attribute: .Right,
+                multiplier: 1,
+                constant: 0),
+            NSLayoutConstraint(item: self,
+                attribute: .Bottom,
+                relatedBy: .Equal,
+                toItem: cancelButton,
                 attribute: .Bottom,
                 multiplier: 1,
                 constant: 0),
@@ -309,6 +342,10 @@ protocol ImageProvider {
         setupConstraints()
     }
     
+    func cancel() {
+        imageDelegate?.saved()
+    }
+    
     func insertEntry() {
         let e = Entry.insertNew()
         e.date = date.timeIntervalSince1970
@@ -345,6 +382,7 @@ protocol ImageProvider {
         pictureView.image = image
         blurView.alpha = 0.75
         setMainColor(UIColor.whiteColor())
+        saveButton.enabled = true
     }
     
     func pickDate() {
