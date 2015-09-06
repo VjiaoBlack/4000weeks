@@ -25,12 +25,16 @@ extension Entry {
     }
     
     class func fetch(aroundDate: NSDate) -> [Entry] {
+        return fetch(between: aroundDate.zeroSecond(), and: aroundDate.lastSecond())
+    }
+    
+    class func fetch(between a: NSDate, and b: NSDate) -> [Entry] {
         let fetchRequest = NSFetchRequest(entityName: "Entry")
-        fetchRequest.predicate = NSPredicate(format: "date BETWEEN %@", [aroundDate.zeroSecond(), aroundDate.lastSecond()])
+        println(b)
+        fetchRequest.predicate = NSPredicate(format: "date <= %@", b)
         var e: NSError?
         return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
     }
-    
     
     // Always save context after modifying
     class func insertNew() -> Entry {

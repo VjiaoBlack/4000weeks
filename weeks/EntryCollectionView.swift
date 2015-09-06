@@ -22,8 +22,9 @@ class EntryTableViewCell: UITableViewCell {
             //photoView.image = UIImage(data: entry!.picture)
             let fmt = NSDateFormatter()
             fmt.locale = NSLocale.currentLocale()
+            fmt.dateStyle = NSDateFormatterStyle.ShortStyle
             dateLabel.text = fmt.stringFromDate(NSDate(timeIntervalSince1970: entry!.date))
-            dateLabel.text = "shoop"
+            
             summaryLabel.text = entry?.summary
             backgroundView = UIImageView(image: UIImage(data: entry!.picture))
             backgroundView!.clipsToBounds = true
@@ -94,7 +95,7 @@ class EntryTableViewController: UITableViewController {
         }
     }
     
-    var entries: [Entry] = Entry.fetch(limit: 1)//(NSDate())
+    var entries: [Entry] = Entry.fetch(between: NSDate(timeIntervalSince1970: 0),and:NSDate())
     
     override func viewDidLoad() {
         super.viewDidLoad()
