@@ -15,6 +15,7 @@ protocol ImageReceiver {
 protocol ImageProvider {
     // this method should eventuall call toReceiver.receiveImages()
     func provideImage(toReceiver: ImageReceiver)
+    func saved()
 }
 
 @IBDesignable class EntryEditView: UIView, ImageReceiver {
@@ -111,7 +112,7 @@ protocol ImageProvider {
                 toItem: titleField,
                 attribute: .Top,
                 multiplier: 1,
-                constant: -8),
+                constant: -32),
             NSLayoutConstraint(item: self,
                 attribute: .Left,
                 relatedBy: .Equal,
@@ -315,8 +316,8 @@ protocol ImageProvider {
         e.title = titleField.text
         e.picture = UIImagePNGRepresentation(image)
         Entry.saveContext()
-    
-
+        imageDelegate?.saved()
+/*
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allZeros,
             animations: {
                 self.transform = CGAffineTransformMakeScale(0.3, 0.3)
@@ -332,7 +333,7 @@ protocol ImageProvider {
                     self.transform = CGAffineTransformIdentity
                     self.alpha = 1
                     }, completion: nil)
-        })
+        })*/
     }
     
     func pickPicture() {
@@ -370,6 +371,10 @@ class EntryTestVC: UIViewController, ImageProvider, UIImagePickerControllerDeleg
         super.viewDidLoad()
         eview.imageDelegate = self
         println(Entry.fetch())
+    }
+    
+    func saved() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func provideImage(toReceiver: ImageReceiver) {

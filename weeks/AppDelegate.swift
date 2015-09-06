@@ -25,11 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("ig authorize")
             return true
         }
-        return FBSDKApplicationDelegate.sharedInstance()
+        return true
+        /*return FBSDKApplicationDelegate.sharedInstance()
             .application(application,
                 openURL: url,
                 sourceApplication: sourceApplication,
-                annotation: annotation)
+                annotation: annotation)*/
     }
 
     func applicationWillResignActive(application: UIApplication) {
