@@ -5,6 +5,7 @@
 //  Created by Will on 9/4/15.
 //  Copyright (c) 2015 Will Field-Thompson. All rights reserved.
 //
+/*
 
 import UIKit
 
@@ -83,3 +84,4 @@ class ServiceLoginViewController: UIViewController, UIWebViewDelegate {
 
 }
 
+*/

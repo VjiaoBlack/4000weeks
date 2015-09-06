@@ -20,16 +20,32 @@ extension Entry {
         let fetchRequest = NSFetchRequest(entityName: "Entry")
         fetchRequest.fetchLimit = limit
         var e: NSError?
-        let entities = mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
-        return entities
+        return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
+
     }
     
+    class func fetch(aroundDate: NSDate) -> [Entry] {
+        return fetch(between: aroundDate.zeroSecond(), and: aroundDate.lastSecond())
+    }
+    
+    class func fetch(between a: NSDate, and b: NSDate) -> [Entry] {
+        let fetchRequest = NSFetchRequest(entityName: "Entry")
+        fetchRequest.predicate = NSPredicate(format: "(date >= %@)", a)
+        println(fetchRequest.predicate)
+        var e: NSError?
+        return mobc().executeFetchRequest(fetchRequest, error: &e) as! [Entry]
+    }
     
     // Always save context after modifying
-    class func insert() -> Entry {
+    class func insertNew() -> Entry {
         let entry = NSEntityDescription.insertNewObjectForEntityForName("Entry",
             inManagedObjectContext: mobc()) as! Entry
         return entry
+    }
+    
+    func deleteAndSave() {
+        Entry.mobc().deleteObject(self)
+        Entry.saveContext()
     }
     
     class func saveContext() {
@@ -37,5 +53,7 @@ extension Entry {
         mobc().save(&err)
     }
     
-    
+    override var description: String {
+       return "\(date): \(title)\n\t\(summary)"
+    }
 }
